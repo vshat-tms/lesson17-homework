@@ -17,7 +17,6 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
-import com.example.lessson17.MainActivity as MainActivity1
 
 class MainActivity : AppCompatActivity() {
 
