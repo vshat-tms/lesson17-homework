@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/background"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/myInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,7 +25,8 @@
         android:paddingTop="24dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/myTextView"
+            android:layout_width="46dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
@@ -32,6 +35,7 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/myPlus"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="36dp"
@@ -39,6 +43,7 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/myMinus"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
@@ -46,12 +51,62 @@
             android:textSize="20sp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/myZero"
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="0"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/myRND"
+            android:layout_width="79dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:text="rnd"
             android:textSize="20sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingTop="24dp">
+
+    <TextView
+        android:layout_width="46dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="info"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/myDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_marginLeft="36dp"
+            android:text="device"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/myTime"
+            android:layout_width="73dp"
+            android:layout_height="58dp"
+            android:layout_marginLeft="24dp"
+            android:text="time"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/myToast"
+            android:layout_width="106dp"
+            android:layout_height="58dp"
+            android:layout_marginLeft="24dp"
+            android:text="toast"
+            android:textSize="14sp" />
+</LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,25 +124,37 @@
             android:textSize="20dp" />
 
         <Button
-            android:layout_width="50dp"
+            android:id="@+id/myRed"
+            android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="36dp"
             android:text="r"
             android:textSize="20sp" />
 
         <Button
-            android:layout_width="50dp"
+            android:id="@+id/myGreen"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:text="g"
             android:textSize="20sp" />
 
         <Button
-            android:layout_width="50dp"
+            android:id="@+id/myBlue"
+            android:layout_width="41dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:text="b"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/myMagenta"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="m"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -97,7 +164,7 @@
         android:paddingTop="24dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="59dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
@@ -106,24 +173,35 @@
             android:textSize="20dp" />
 
         <Button
-            android:layout_width="50dp"
+            android:id="@+id/myOne"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="36dp"
             android:text="1"
             android:textSize="20sp" />
 
         <Button
-            android:layout_width="50dp"
+            android:id="@+id/myTwo"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:text="2"
             android:textSize="20sp" />
 
         <Button
-            android:layout_width="50dp"
+            android:id="@+id/myThree"
+            android:layout_width="41dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:text="3"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/myFour"
+            android:layout_width="43dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="4"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -148,6 +226,7 @@
                 android:textSize="20dp" />
 
             <Button
+                android:id="@+id/myCat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="36dp"
@@ -155,6 +234,7 @@
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/myDog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -162,6 +242,7 @@
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/myParrot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -169,6 +250,7 @@
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/myRND_Animals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -178,9 +260,11 @@
     </HorizontalScrollView>
 
     <ImageView
+        android:id="@+id/myImageView"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
-        android:src="@drawable/cat" />
+        android:src="@drawable/cat"/>
 </LinearLayout>
+
