@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.toastButton).setOnClickListener{
-            val text = "TOAST!"
+            val text = "TOAST"
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(this, text, duration)
             toast.show()
