@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity() {
 
         val toast: Button = findViewById(R.id.myToast)
         toast.setOnClickListener {
-            val newToast = Toast.makeText(this, "Нажата кнопка \"toast\"", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Нажата кнопка \"toast\"", Toast.LENGTH_LONG).show()
         }
     }
 }
