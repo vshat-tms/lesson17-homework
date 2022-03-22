@@ -12,105 +12,101 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("SimpleDateFormat", "SetTextI18n")
-    override fun onCreate(savedInstanceState: Bundle?) {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var COUNT = 0
-
-        //findViewById
-        val INFO_TABLE = findViewById<TextView>(R.id.info)
-        val BACKGROUND = findViewById<LinearLayout>(R.id.background)
-        val IMAGE: ImageView = findViewById(R.id.image)
-
-        //PHONE DATA
-        val PHONE_MANUFACTURE = Build.MANUFACTURER
-        val PHONE_MODEL = Build.MODEL
-        val DATE_FORMAT = SimpleDateFormat("HH:mm:ss")
-
-        //TOAST
-        val toastText = "Тут могла быть ваша реклама"
-        val duration = Toast.LENGTH_LONG
-        val toast = Toast.makeText(applicationContext, toastText, duration)
-        toast.setGravity(Gravity.CENTER, 0, 0)
+        var count = 0
+        val infoTable = findViewById<TextView>(R.id.info)
+        val background = findViewById<LinearLayout>(R.id.background)
+        val image: ImageView = findViewById(R.id.image)
 
         findViewById<Button>(R.id.plusCount).setOnClickListener {
-            INFO_TABLE.text = "${++COUNT}"
+            infoTable.text = "${++count}"
         }
         findViewById<Button>(R.id.minusCount).setOnClickListener {
-            INFO_TABLE.text = "${--COUNT}"
+            infoTable.text = "${--count}"
         }
         findViewById<Button>(R.id.zeroCount).setOnClickListener {
-            COUNT = 0
-            INFO_TABLE.text = "$COUNT"
+            count = 0
+            infoTable.text = "$count"
         }
         findViewById<Button>(R.id.randomCount).setOnClickListener {
-            COUNT = (-100..100).random()
-            INFO_TABLE.text = "$COUNT"
+            count = (-100..100).random()
+            infoTable.text = "$count"
         }
         findViewById<Button>(R.id.device).setOnClickListener {
-            INFO_TABLE.text = "$PHONE_MANUFACTURE $PHONE_MODEL"
+            infoTable.text = "$PHONE_MANUFACTURE $PHONE_MODEL"
         }
         findViewById<Button>(R.id.time).setOnClickListener {
             val currentDate = DATE_FORMAT.format(Date())
-            INFO_TABLE.text = currentDate
+            infoTable.text = currentDate
         }
         findViewById<Button>(R.id.toast).setOnClickListener {
+            val toastText = "Тут могла быть ваша реклама"
+            val duration = Toast.LENGTH_LONG
+            val toast = Toast.makeText(this, toastText, duration)
+            toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }
         findViewById<Button>(R.id.colorRed).setOnClickListener {
-            INFO_TABLE.setTextColor(Color.parseColor("red"))
+            infoTable.setTextColor(Color.RED)
         }
         findViewById<Button>(R.id.colorGreen).setOnClickListener {
-            INFO_TABLE.setTextColor(Color.parseColor("green"))
+            infoTable.setTextColor(Color.GREEN)
         }
         findViewById<Button>(R.id.colorBlue).setOnClickListener {
-            INFO_TABLE.setTextColor(Color.parseColor("blue"))
+            infoTable.setTextColor(Color.BLUE)
         }
         findViewById<Button>(R.id.colorMagenta).setOnClickListener {
-            INFO_TABLE.setTextColor(Color.parseColor("magenta"))
+            infoTable.setTextColor(Color.MAGENTA)
         }
         findViewById<Button>(R.id.firstColorBackground).setOnClickListener {
-            BACKGROUND.setBackgroundColor(Color.parseColor("yellow"))
+            background.setBackgroundColor(Color.YELLOW)
         }
         findViewById<Button>(R.id.secondColorBackground).setOnClickListener {
-            BACKGROUND.setBackgroundColor(Color.parseColor("grey"))
+            background.setBackgroundColor(Color.GRAY)
         }
         findViewById<Button>(R.id.thirdColorBackground).setOnClickListener {
-            BACKGROUND.setBackgroundColor(Color.parseColor("purple"))
+            background.setBackgroundColor(Color.CYAN)
         }
         findViewById<Button>(R.id.fourthColorBackground).setOnClickListener {
-            BACKGROUND.setBackgroundColor(Color.parseColor("white"))
+            background.setBackgroundColor(Color.WHITE)
         }
-        IMAGE.setOnClickListener {
-            when (IMAGE.rotation) {
-                0f -> IMAGE.rotation = 90f
-                90f -> IMAGE.rotation = 180f
-                180f -> IMAGE.rotation = 270f
-                else -> IMAGE.rotation = 0f
+        image.setOnClickListener {
+            when (image.rotation) {
+                0f -> image.rotation = 90f
+                90f -> image.rotation = 180f
+                180f -> image.rotation = 270f
+                else -> image.rotation = 0f
             }
         }
         findViewById<Button>(R.id.catImage).setOnClickListener {
-            IMAGE.rotation = 0f
-            IMAGE.setImageResource(R.drawable.cat)
+            image.rotation = 0f
+            image.setImageResource(R.drawable.cat)
         }
         findViewById<Button>(R.id.dogImage).setOnClickListener {
-            IMAGE.rotation = 0f
-            IMAGE.setImageResource(R.drawable.dog)
+            image.rotation = 0f
+            image.setImageResource(R.drawable.dog)
         }
         findViewById<Button>(R.id.frogImage).setOnClickListener {
-            IMAGE.rotation = 0f
-            IMAGE.setImageResource(R.drawable.frog)
+            image.rotation = 0f
+            image.setImageResource(R.drawable.frog)
         }
         findViewById<Button>(R.id.randomImage).setOnClickListener {
-            IMAGE.rotation = 0f
+            image.rotation = 0f
             when ((1..3).random()) {
-                1 -> IMAGE.setImageResource(R.drawable.cat)
-                2 -> IMAGE.setImageResource(R.drawable.dog)
-                3 -> IMAGE.setImageResource(R.drawable.frog)
+                1 -> image.setImageResource(R.drawable.cat)
+                2 -> image.setImageResource(R.drawable.dog)
+                3 -> image.setImageResource(R.drawable.frog)
             }
         }
+    }
+
+    companion object {
+        val PHONE_MANUFACTURE = Build.MANUFACTURER
+        val PHONE_MODEL = Build.MODEL
+        private val DATE_FORMAT = SimpleDateFormat("HH:mm:ss")
     }
 }
