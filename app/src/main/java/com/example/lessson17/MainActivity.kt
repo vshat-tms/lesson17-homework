@@ -1,29 +1,35 @@
 package com.example.lessson17
 
 import android.graphics.Color
+import android.media.Image
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AbsListView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lessson17.databinding.ActivityMainBinding
+import java.text.DateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    private var currentImgRes = R.drawable.cat
+    private var counter = 0
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var counter = 0
 
-        val imageList = listOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
 
         binding.apply {
             buttonPlus.setOnClickListener {
@@ -83,9 +89,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             buttonTime.setOnClickListener {
-                val now = LocalDateTime.now()
-                val formatter = DateTimeFormatter.ofPattern("hh:mm")
-                info.text = now.format(formatter)
+                val currentTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(Date())
+                info.text = currentTime
 
             }
 
@@ -95,30 +100,38 @@ class MainActivity : AppCompatActivity() {
             }
 
             buttonCat.setOnClickListener {
-                image.rotation = 0F
-                image.setImageResource(imageList.get(0))
+                setImg(image, 0)
             }
             buttonDog.setOnClickListener {
-                image.rotation = 0F
-                image.setImageResource(imageList.get(1))
+                setImg(image, 1)
             }
             buttonParrot.setOnClickListener {
-                image.rotation = 0F
-                image.setImageResource(imageList.get(2))
+                setImg(image, 2)
             }
             buttonRndAnimal.setOnClickListener {
-                var randomDigit = Random.nextInt(100)
                 image.rotation = 0F
-                when {
-                    randomDigit % 2 == 0 -> image.setImageResource(imageList[0])
-                    randomDigit % 5 != 0 -> image.setImageResource(imageList[1])
-                    randomDigit % 3 == 0 -> image.setImageResource(imageList[2])
-                }
+                val randomImageRes = (imageList - currentImgRes).random()
+                currentImgRes = randomImageRes
+                Log.d("RND", "${imageList - currentImgRes}" )
+                image.setImageResource(randomImageRes)
             }
 
             image.setOnClickListener {
-                image.rotation = 90F
+                image.rotation += ROTATION_DEGREES
             }
         }
+    }
+
+    private fun setImg(view: View, imgResId: Int){
+        val img = (view as ImageView)
+        img.rotation = 0F
+        currentImgRes = imageList[imgResId]
+        img.setImageResource(currentImgRes)
+
+    }
+
+    companion object {
+        const val ROTATION_DEGREES = 90F
+        val imageList = listOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
     }
 }
