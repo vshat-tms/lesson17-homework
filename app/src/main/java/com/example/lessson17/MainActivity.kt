@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -20,15 +22,20 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView: TextView = findViewById(R.id.myInfo)
         var counter = 0
+        var rotation = 0f
+        val textView: TextView = findViewById(R.id.myInfo)
         val imageView: ImageView = findViewById(R.id.myImageView)
         val random = Random()
+
+        fun updateRotation(corner: Float){
+            rotation = corner
+            imageView.rotation = rotation
+        }
 
 //      операции со значением счетчика:
 
@@ -44,15 +51,13 @@ class MainActivity : AppCompatActivity() {
 
         val zero: Button = findViewById(R.id.myZero)
         zero.setOnClickListener {
-            textView.text = "${0.also { counter = it }}"
+            textView.text = 0.toString()
         }
 
         val rnd: Button = findViewById(R.id.myRND)
         rnd.setOnClickListener {
-            val a = -100
-            val b = 100
-            val randomNumber = a + random.nextInt(b - a + 1)
-            textView.text = "${randomNumber.also { counter = randomNumber }}"
+            val randomNumber = MIN_RND_VALUE + random.nextInt(MAX_RND_VALUE - MIN_RND_VALUE + 1)
+            textView.text = randomNumber.toString()
         }
 
 //        изменение цвета счетчика:
@@ -103,51 +108,34 @@ class MainActivity : AppCompatActivity() {
 
         val cat: Button = findViewById(R.id.myCat)
         cat.setOnClickListener {
-            val bitmap: Bitmap = (ResourcesCompat.getDrawable(resources, R.drawable.cat, null)
-                    as BitmapDrawable).bitmap
-            imageView.setImageBitmap(bitmap)
-            imageView.setPivotX((imageView.getWidth()/2).toFloat());
-            imageView.setPivotY((imageView.getHeight()/2).toFloat());
-            imageView.setRotation(0F);
+            imageView.setImageResource(R.drawable.cat)
+            updateRotation(rotation - rotation)
         }
 
         val dog: Button = findViewById(R.id.myDog)
         dog.setOnClickListener {
-            val bitmap: Bitmap = (ResourcesCompat.getDrawable(resources, R.drawable.dog, null)
-                    as BitmapDrawable).bitmap
-            imageView.setImageBitmap(bitmap)
-            imageView.setPivotX((imageView.getWidth()/2).toFloat());
-            imageView.setPivotY((imageView.getHeight()/2).toFloat());
-            imageView.setRotation(0F);
+            imageView.setImageResource(R.drawable.dog)
+            updateRotation(rotation - rotation)
         }
 
         val parrot: Button = findViewById(R.id.myParrot)
         parrot.setOnClickListener {
-            val bitmap: Bitmap = (ResourcesCompat.getDrawable(resources, R.drawable.parrot, null)
-                    as BitmapDrawable).bitmap
-            imageView.setImageBitmap(bitmap)
-            imageView.setPivotX((imageView.getWidth()/2).toFloat());
-            imageView.setPivotY((imageView.getHeight()/2).toFloat());
-            imageView.setRotation(0F);
-
+            imageView.setImageResource(R.drawable.parrot)
+            updateRotation(rotation - rotation)
         }
 
         val rndAnimals: Button = findViewById(R.id.myRND_Animals)
         rndAnimals.setOnClickListener {
             val image = arrayOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
             imageView.setImageResource(image[random.nextInt(image.size)])
-            imageView.setPivotX((imageView.getWidth()/2).toFloat());
-            imageView.setPivotY((imageView.getHeight()/2).toFloat());
-            imageView.setRotation(0F);
+            updateRotation(rotation - rotation)
         }
 
 //        поворот картинки:
 
         val imageRotation: ImageView = findViewById(R.id.myImageView)
         imageRotation.setOnClickListener {
-            imageView.setPivotX((imageView.getWidth()/2).toFloat());
-            imageView.setPivotY((imageView.getHeight()/2).toFloat());
-            imageView.setRotation(90F);
+            updateRotation(rotation + 90)
         }
 
 //        секция инфо:
@@ -159,15 +147,18 @@ class MainActivity : AppCompatActivity() {
 
         val time: Button = findViewById(R.id.myTime)
         time.setOnClickListener {
-            val time = LocalTime.now()
-            val formatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-            val formatted = time.format(formatter)
-            textView.text = "Сurrent time: $formatted"
+            val currentTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(Date())
+            textView.text = currentTime
         }
 
         val toast: Button = findViewById(R.id.myToast)
         toast.setOnClickListener {
             Toast.makeText(this, "Нажата кнопка \"toast\"", Toast.LENGTH_LONG).show()
         }
+    }
+
+    companion object {
+        private const val MIN_RND_VALUE = -100
+        private const val MAX_RND_VALUE = 100
     }
 }
