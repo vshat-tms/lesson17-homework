@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity() {
             buttonTime.setOnClickListener {
                 val currentTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(Date())
                 info.text = currentTime
-
             }
 
             buttonToast.setOnClickListener {
@@ -102,17 +101,19 @@ class MainActivity : AppCompatActivity() {
             buttonCat.setOnClickListener {
                 setImg(image, 0)
             }
+
             buttonDog.setOnClickListener {
                 setImg(image, 1)
             }
+
             buttonParrot.setOnClickListener {
                 setImg(image, 2)
             }
+
             buttonRndAnimal.setOnClickListener {
                 image.rotation = 0F
-                val randomImageRes = (imageList - currentImgRes).random()
+                val randomImageRes = (IMAGE_LIST - currentImgRes).random()
                 currentImgRes = randomImageRes
-                Log.d("RND", "${imageList - currentImgRes}" )
                 image.setImageResource(randomImageRes)
             }
 
@@ -125,13 +126,13 @@ class MainActivity : AppCompatActivity() {
     private fun setImg(view: View, imgResId: Int){
         val img = (view as ImageView)
         img.rotation = 0F
-        currentImgRes = imageList[imgResId]
+        currentImgRes = IMAGE_LIST[imgResId]
         img.setImageResource(currentImgRes)
 
     }
 
     companion object {
         const val ROTATION_DEGREES = 90F
-        val imageList = listOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
+        val IMAGE_LIST = listOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
     }
 }
