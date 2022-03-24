@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             buttonRandom.setOnClickListener {
-                counter = Random.nextInt(-100, 100)
+                counter = Random.nextInt(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE)
                 info.text = counter.toString()
             }
 
@@ -134,5 +134,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val ROTATION_DEGREES = 90F
         val IMAGE_LIST = listOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
+        const val RANDOM_MIN_VALUE = -100
+        const val RANDOM_MAX_VALUE = 100
     }
 }
