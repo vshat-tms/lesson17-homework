@@ -19,7 +19,7 @@ import java.util.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private var currentImgRes = R.drawable.cat
     private var counter = 0
 
@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         binding.apply {
             buttonPlus.setOnClickListener {
@@ -94,20 +92,22 @@ class MainActivity : AppCompatActivity() {
             }
 
             buttonToast.setOnClickListener {
-                Toast.makeText(this@MainActivity, "Hello from Stepan",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@MainActivity, "Hello from Stepan",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             buttonCat.setOnClickListener {
-                setImg(image, 0)
+                setImg(image, IMAGE_LIST_CAT_INDEX)
             }
 
             buttonDog.setOnClickListener {
-                setImg(image, 1)
+                setImg(image, IMAGE_LIST_DOG_INDEX)
             }
 
             buttonParrot.setOnClickListener {
-                setImg(image, 2)
+                setImg(image, IMAGE_LIST_PARROT_INDEX)
             }
 
             buttonRndAnimal.setOnClickListener {
@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setImg(view: View, imgResId: Int){
+    private fun setImg(view: View, imgResId: Int) {
         val img = (view as ImageView)
         img.rotation = 0F
         currentImgRes = IMAGE_LIST[imgResId]
@@ -136,5 +136,8 @@ class MainActivity : AppCompatActivity() {
         val IMAGE_LIST = listOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
         const val RANDOM_MIN_VALUE = -100
         const val RANDOM_MAX_VALUE = 100
+        const val IMAGE_LIST_CAT_INDEX = 0
+        const val IMAGE_LIST_DOG_INDEX = 1
+        const val IMAGE_LIST_PARROT_INDEX = 2
     }
 }
