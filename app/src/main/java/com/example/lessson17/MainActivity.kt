@@ -37,8 +37,7 @@ class MainActivity : AppCompatActivity() {
             imageView.rotation = rotation
         }
 
-//      операции со значением счетчика:
-
+        //операции со значением счетчика:
         val plus: Button = findViewById(R.id.myPlus)
         plus.setOnClickListener {
             textView.text = "${++counter}"
@@ -60,8 +59,7 @@ class MainActivity : AppCompatActivity() {
             textView.text = randomNumber.toString()
         }
 
-//        изменение цвета счетчика:
-
+        //изменение цвета счетчика:
         val red: Button = findViewById(R.id.myRed)
         red.setOnClickListener {
             textView.setTextColor(Color.RED)
@@ -82,8 +80,7 @@ class MainActivity : AppCompatActivity() {
             textView.setTextColor(Color.MAGENTA)
         }
 
-//        изменение цвета фона:
-
+        // изменение цвета фона:
         val backgroundBlue: Button = findViewById(R.id.myOne)
         backgroundBlue.setOnClickListener {
             findViewById<View>(R.id.background).setBackgroundColor(Color.BLUE)
@@ -104,42 +101,39 @@ class MainActivity : AppCompatActivity() {
             findViewById<View>(R.id.background).setBackgroundColor(Color.GRAY)
         }
 
-//      изменение картинки животных:
-
+        // изменение картинки животных:
         val cat: Button = findViewById(R.id.myCat)
         cat.setOnClickListener {
             imageView.setImageResource(R.drawable.cat)
-            updateRotation(rotation - rotation)
+            updateRotation(0F)
         }
 
         val dog: Button = findViewById(R.id.myDog)
         dog.setOnClickListener {
             imageView.setImageResource(R.drawable.dog)
-            updateRotation(rotation - rotation)
+            updateRotation(0F)
         }
 
         val parrot: Button = findViewById(R.id.myParrot)
         parrot.setOnClickListener {
             imageView.setImageResource(R.drawable.parrot)
-            updateRotation(rotation - rotation)
+            updateRotation(0F)
         }
 
         val rndAnimals: Button = findViewById(R.id.myRND_Animals)
         rndAnimals.setOnClickListener {
             val image = arrayOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
             imageView.setImageResource(image[random.nextInt(image.size)])
-            updateRotation(rotation - rotation)
+            updateRotation(0F)
         }
 
-//        поворот картинки:
-
+        // поворот картинки:
         val imageRotation: ImageView = findViewById(R.id.myImageView)
         imageRotation.setOnClickListener {
             updateRotation(rotation + 90)
         }
 
-//        секция инфо:
-
+        // секция инфо:
         val device: Button = findViewById(R.id.myDevice)
         device.setOnClickListener {
             textView.text = "${Build.BRAND} ${Build.MODEL}"
