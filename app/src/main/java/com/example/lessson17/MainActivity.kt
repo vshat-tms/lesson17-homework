@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
 
         val toast: Button = findViewById(R.id.myToast)
         toast.setOnClickListener {
-            Toast.makeText(this, "Нажата кнопка \"toast\"", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Вы нажали \"toast\"", Toast.LENGTH_LONG).show()
         }
     }
 
