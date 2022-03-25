@@ -4,16 +4,15 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.random.Random
 import kotlin.random.nextInt
 
 class MainActivity : AppCompatActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             textView.text = "$count"
         }
         findViewById<Button>(R.id.random).setOnClickListener {
-            count = Random.nextInt(-100..100)
+            count = Random.nextInt(MIN_VALUE..MAX_VALUE)
             textView.text = "$count"
         }
         findViewById<Button>(R.id.red).setOnClickListener {
@@ -53,13 +52,12 @@ class MainActivity : AppCompatActivity() {
             textView.text = Build.BRAND + " " + Build.MODEL
         }
         findViewById<Button>(R.id.time).setOnClickListener {
-            val now = LocalDateTime.now()
-            val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-            textView.text = now.format(formatDate)
+            val currentDate = DATE_FORMAT.format(Date())
+            textView.text = currentDate
         }
         findViewById<Button>(R.id.toast).setOnClickListener {
             Toast.makeText(
-                this@MainActivity, "Viva Belarus! Glory to Ukraine",
+                this, MESSAGE_TOAST,
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -75,27 +73,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.fourthBackGround).setOnClickListener {
             backGround.setBackgroundColor(Color.CYAN)
         }
-        findViewById<Button>(R.id.catButton).setOnClickListener {
-            picture.animate().rotation(0F).duration = 500
-            picture.setImageResource(R.drawable.cat)
-        }
-        findViewById<Button>(R.id.dogButton).setOnClickListener {
-            picture.animate().rotation(0F).duration = 500
-            picture.setImageResource(R.drawable.dog)
-        }
-        findViewById<Button>(R.id.parrotButton).setOnClickListener {
-            picture.animate().rotation(0F).duration = 500
-            picture.setImageResource(R.drawable.parrot)
-        }
-        findViewById<Button>(R.id.rndImage).setOnClickListener {
-            picture.animate().rotation(0F).duration = 500
-            when (Random.nextInt(1..3)) {
-                1 -> picture.setImageResource(R.drawable.cat)
-                2 -> picture.setImageResource(R.drawable.dog)
-                3 -> picture.setImageResource(R.drawable.parrot)
-            }
-        }
-        // Не удалось реализовать сброс поворота картинки ¯\_(ツ)_/¯
+
         picture.setOnClickListener {
             when (picture.rotation) {
                 0F -> picture.animate().rotation(90f)
@@ -105,5 +83,33 @@ class MainActivity : AppCompatActivity() {
                 else -> picture.animate().rotation(0f)
             }
         }
+
+        findViewById<Button>(R.id.catButton).setOnClickListener {
+            picture.animate().rotation(0F)
+            picture.setImageResource(R.drawable.cat)
+        }
+        findViewById<Button>(R.id.dogButton).setOnClickListener {
+            picture.animate().rotation(0F)
+            picture.setImageResource(R.drawable.dog)
+        }
+        findViewById<Button>(R.id.parrotButton).setOnClickListener {
+            picture.animate().rotation(0F)
+            picture.setImageResource(R.drawable.parrot)
+        }
+        findViewById<Button>(R.id.rndImage).setOnClickListener {
+            picture.animate().rotation(0F)
+            when (Random.nextInt(1..3)) {
+                1 -> picture.setImageResource(R.drawable.cat)
+                2 -> picture.setImageResource(R.drawable.dog)
+                3 -> picture.setImageResource(R.drawable.parrot)
+            }
+        }
+    }
+
+    companion object {
+        private val DATE_FORMAT = SimpleDateFormat("HH:mm")
+        private const val MAX_VALUE = 100
+        private const val MIN_VALUE = -100
+        private const val MESSAGE_TOAST = "Viva Belarus! Glory to Ukraine"
     }
 }
