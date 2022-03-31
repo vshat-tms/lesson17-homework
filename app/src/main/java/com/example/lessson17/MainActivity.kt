@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         linearLayout = findViewById(R.id.background)
     }
 
-    fun onButtonClick(view: View){
-        when(view.id){
+    fun onButtonClick(view: View) {
+        when (view.id) {
             R.id.plusButton -> counterPlusButtonClick()
             R.id.minusButton -> counterMinusButtonClick()
             R.id.randomNumberButton -> counterRandomButtonClick()
@@ -51,113 +51,109 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun counterPlusButtonClick(){
+    private fun counterPlusButtonClick() {
         displayTextView.text = "${++counter}"
     }
 
-    private fun counterMinusButtonClick(){
+    private fun counterMinusButtonClick() {
         displayTextView.text = "${--counter}"
     }
 
-    private fun counterRandomButtonClick(){
-        counter = Random.nextInt(100)
+    private fun counterRandomButtonClick() {
+        counter = Random.nextInt(RANDOM_COUNTER_MAX_VALUE)
         displayTextView.text = "$counter"
     }
 
-    private fun counterToZeroButtonClick(){
+    private fun counterToZeroButtonClick() {
         counter = 0
         displayTextView.text = "$counter"
     }
 
-    private fun infoShowDeviceModelButton(){
+    private fun infoShowDeviceModelButton() {
         displayTextView.text = "${Build.MODEL}"
     }
 
-    private fun infoShowTimeButtonClick(){
+    private fun infoShowTimeButtonClick() {
         displayTextView.text = "$CURRENT_TIME"
     }
 
-    private fun infoShowToastButtonClick(){
-        val toast = Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG)
-        toast.show()
+    private fun infoShowToastButtonClick() {
+        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show()
     }
 
-    private fun colorTextSetRedButtonClick(){
+    private fun colorTextSetRedButtonClick() {
         displayTextView.setTextColor(Color.RED)
     }
 
-    private fun colorTextSetGreenButtonClick(){
+    private fun colorTextSetGreenButtonClick() {
         displayTextView.setTextColor(Color.GREEN)
     }
 
-    private fun colorTextSetBlueButtonClick(){
+    private fun colorTextSetBlueButtonClick() {
         displayTextView.setTextColor(Color.BLUE)
     }
 
-    private fun colorTextSetMagentaButtonClick(){
+    private fun colorTextSetMagentaButtonClick() {
         displayTextView.setTextColor(Color.MAGENTA)
     }
 
-    private fun backgroundColorSetBlackButtonClick(){
+    private fun backgroundColorSetBlackButtonClick() {
         linearLayout.setBackgroundColor(Color.BLACK)
     }
 
-    private fun backgroundColorSetYellowButtonClick(){
+    private fun backgroundColorSetYellowButtonClick() {
         linearLayout.setBackgroundColor(Color.YELLOW)
     }
 
-    private fun backgroundColorSetGrayButtonClick(){
+    private fun backgroundColorSetGrayButtonClick() {
         linearLayout.setBackgroundColor(Color.GRAY)
     }
 
-    private fun backgroundColorSetCyanButtonClick(){
+    private fun backgroundColorSetCyanButtonClick() {
         linearLayout.setBackgroundColor(Color.CYAN)
     }
 
-    private fun setDefaultRotationToImage(){
+    private fun setDefaultRotationToImage() {
         imageView.rotation = ROTATION_DEGREES.first()
     }
 
-    private fun imageToRotateButtonClick(){
+    private fun imageToRotateButtonClick() {
         val currentRotation = imageView.rotation
         val index = ROTATION_DEGREES.indexOf(currentRotation)
-        if (currentRotation < ROTATION_DEGREES.last()){
+        if (currentRotation < ROTATION_DEGREES.last()) {
             imageView.rotation = ROTATION_DEGREES[index + 1]
-        }else{
+        } else {
             imageView.rotation = ROTATION_DEGREES.first()
         }
     }
 
-    private fun imageSetCatButtonClick(){
+    private fun imageSetCatButtonClick() {
         setDefaultRotationToImage()
         imageView.setImageResource(R.drawable.cat)
     }
 
-    private fun imageSetDogButtonClick(){
+    private fun imageSetDogButtonClick() {
         setDefaultRotationToImage()
         imageView.setImageResource(R.drawable.dog)
     }
 
-    private fun imageSetParrotButtonClick(){
+    private fun imageSetParrotButtonClick() {
         setDefaultRotationToImage()
         imageView.setImageResource(R.drawable.parrot)
     }
 
-    private fun imageSetRandomButtonClick(){
+    private fun imageSetRandomButtonClick() {
         setDefaultRotationToImage()
         imageView.setImageResource(
             PICTURES_ID[Random.nextInt(PICTURES_ID.size)]
         )
     }
 
-
-
-
-
-    companion object{
+    companion object {
+        private const val RANDOM_COUNTER_MAX_VALUE = 100
+        private const val TOAST_TEXT = "Just message"
         private val DATE_FORMAT = SimpleDateFormat("HH:mm:ss")
         private val CURRENT_TIME: String = DATE_FORMAT.format(Date())
-        private const val TOAST_TEXT = "Just message"
         private val ROTATION_DEGREES = listOf(0F, 90F, 180F, 270F)
         private val PICTURES_ID = listOf(R.drawable.cat, R.drawable.dog, R.drawable.parrot)
     }
